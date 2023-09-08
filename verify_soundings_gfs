@@ -1,25 +1,19 @@
 #!/bin/sh
 echo 'into'
 
-dayoweek=hold2
-mdlymdh=2022070600
+gfsver=v16.3
+mdlymdh=2023082412
+
 mdlymd=`echo $mdlymdh | cut -c1-8`
 mdlcyc=`echo $mdlymdh | cut -c9-10`
 stations="744550 726320 722150"
 stations="723570 723400 724560 726590"
-stations="723270 724400 723400"
 stations="725620 722080 726450 722300 722150 722350"
 stations="724560 744550 725580 724400"
 stations="725580 724560 744550 745600 726490"
-stations="725580 724560 723630"
-#stations="726940 724890 727680 727750"
 stations="725620 724510 727470 726450 726320"
 stations="724510 722650 723630"
-stations="723570 723630 724510 724560 725580 725620 726590 744550 745600 724690 726620"
-stations="723570 744550 726620 725580 724560 724510 727640 726490 726590 725620"
 stations="723570 723630 722490 724560 724510 725580 726590 726620 727640" 
-stations="744550 745600 726490 724260"
-stations="724030 725010 725180"
 stations="723570 723630 722490"
 
 mkdir /lfs/h2/emc/stmp/geoffrey.manikin/gempak.sound
@@ -27,21 +21,19 @@ rm /lfs/h2/emc/stmp/geoffrey.manikin/gempak.sound/*
 cd /lfs/h2/emc/stmp/geoffrey.manikin/gempak.sound
 cp /lfs/h2/emc/vpppg/save/geoffrey.manikin/meg/coltbl.xwp .
 
-#cp /lfs/h2/nco/ops/com/gfs/prod/gfs.${mdlymd}/${mdlcyc}/gempak/gfs_${mdlymdh}.snd fmdl
-cp /lfs/h2/emc/vpppg/noscrub/geoffrey.manikin/gfsheat/gfs_${mdlymdh}.snd fmdl
-#fmdl=/ptmpd2/geoffrey.manikin/com2/nawips/prod/nam.${mdlymd}/nam_${mdlymdh}.snd
+cp /lfs/h1/ops/prod/com/gfs/${gfsver}/gfs.${mdlymd}/${mdlcyc}/atmos/gempak/gfs_${mdlymdh}.snd fmdl
+#cp /lfs/h2/emc/vpppg/noscrub/geoffrey.manikin/gfsheat/gfs_${mdlymdh}.snd fmdl
 echo $fmdl
 
-times="156 159 162 165 168"
+times="120"
 for time in $times; do
 for stnm in $stations; do
 
-#fmdl=nam_${stnm}_${mdlymdh}.snd
 dattim="`/lfs/h2/emc/vpppg/save/geoffrey.manikin/meg/advtime ${mdlymdh} $time -1 x`"
 validtime=`echo $dattim | cut -c1-11`
 ymd=`echo $validtime | cut -c1-8`
 cyc=`echo $validtime | cut -c10-11`
-fobs=/dcom/us007003/ldmdata/gempak/uair/$ymd.snd
+fobs=/lfs/h1/ops/prod/dcom/ldmdata/gempak/uair/$ymd.snd
 cp /lfs/h2/emc/vpppg/noscrub/geoffrey.manikin/obs/uair/$ymd.snd fobs
 
 stn=`echo $stnm | cut -c1-5`
@@ -93,6 +85,5 @@ EOF
 done
 done
 gpend
-#scp *gif wd20mg@emcrzdm:/home/people/emc/www/htdocs/mmb/gmanikin/meg/short/images_short/$dayoweek/.
-cp *gif /lfs/h2/emc/stmp/geoffrey.manikin/hold/.
+scp *gif wd20mg@emcrzdm:/home/people/emc/www/htdocs/mmb/gmanikin/test2/.
 exit

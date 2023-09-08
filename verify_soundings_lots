@@ -19,7 +19,6 @@ stations="727970 746470 723546 723550"
 stations="723570 722650"
 stations="724555"
 stations="723570"
-dayoweek=hold9
 
 mkdir /gpfs/dell1/stmp/Geoffrey.Manikin/gempak.sound
 rm /gpfs/dell1/stmp/Geoffrey.Manikin/gempak.sound/*
@@ -29,6 +28,7 @@ cp /gpfs/dell2/emc/verification/save/Geoffrey.Manikin/meg/coltbl.xwp .
 DAPATH=/gpfs/dell2/emc/verification/noscrub/Geoffrey.Manikin/dec20storm/bufr
 DAPATH=/gpfs/dell2/emc/verification/noscrub/Geoffrey.Manikin/okice
 DAPATH=/gpfs/dell2/emc/verification/noscrub/Geoffrey.Manikin/andover/bufr
+#fmdl1=/com2/nawips/prod/nam.${mdlymd}/nam_conusnest_${mdlymdh}.snd.tm00
 #fmdl2=${DAPATH}/hrrr.${mdlymd}/hrrr_${mdlymdh}.snd
 #fmdl3=${DAPATH}/rap.${mdlymd}/rap_${mdlymdh}.snd
 #fmdl4=/com2/nawips/prod/nam.${mdlymd}/nam_${mdlymdh}.snd.tm00
@@ -238,8 +238,5 @@ EOF
 done
 done
 gpend
-scp *gif wd20mg@emcrzdm:/home/people/emc/www/htdocs/mmb/gmanikin/meg/short/images_short/$dayoweek/.
-#scp hrrr*gif wd20mg@emcrzdm:/home/people/emc/www/htdocs/mmb/gmanikin/meg/short/images_short/$dayoweek/.
-#scp namnest*gif wd20mg@emcrzdm:/home/people/emc/www/htdocs/mmb/gmanikin/meg/short/images_short/$dayoweek/.
-#scp *gif wd20mg@emcrzdm:/home/people/emc/www/htdocs/mmb/gmanikin/test5/.
+scp *gif wd20mg@emcrzdm:/home/people/emc/www/htdocs/mmb/gmanikin/test5/.
 exit
